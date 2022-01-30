@@ -23,10 +23,20 @@ namespace Paving.Controllers
 
             return View(categorylist);
         }
-
         public IActionResult Create()
         {
             return View();
         }
+
+        //post the data 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Category obj) 
+        {
+            _db.Category.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
