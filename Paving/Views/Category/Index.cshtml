@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Paving.Models.Category>
+
+<div class="container">
+    <div class="row p-4">
+        <div class="col-6">
+            <h1 class="text-primary">Category</h1>
+        </div>
+        <div class="col-6  text-right">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">Create Category List</a>            
+        </div>
+    </div>
+</div>
+<br />
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                Category
+            </th>
+            <th>
+                Display Order
+            </th>
+        </tr>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td>@obj.Name</td>
+                <td>@obj.DisplayOrder</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>No Category Exists</p>
+}
+
+
+
+
