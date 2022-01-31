@@ -16,7 +16,7 @@ namespace Paving.Controllers
         {
             _db = db;
         }
-      
+
         public IActionResult Index()
         {
             IEnumerable<Category> categorylist = _db.Category;
@@ -31,11 +31,18 @@ namespace Paving.Controllers
         //post the data 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Category obj) 
+        public IActionResult Create(Category obj)
         {
-            _db.Category.Add(obj);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _db.Category.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(obj);
+            }
         }
 
     }
