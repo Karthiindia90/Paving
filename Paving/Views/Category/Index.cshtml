@@ -1,12 +1,11 @@
 ﻿@model IEnumerable<Paving.Models.Category>
-
 <div class="container">
     <div class="row p-4">
         <div class="col-6">
             <h1 class="text-primary">Category</h1>
         </div>
         <div class="col-6  text-right">
-            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">Create Category List</a>            
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">Create Category List</a>
         </div>
     </div>
 </div>
@@ -21,12 +20,21 @@
             <th>
                 Display Order
             </th>
+            <th class="text-center">
+                Action
+            </th>
         </tr>
         @foreach (var obj in Model)
         {
             <tr>
-                <td>@obj.Name</td>
-                <td>@obj.DisplayOrder</td>
+                <td width="50%">@obj.Name</td>
+                <td width="30%">@obj.DisplayOrder</td>
+                <td class="text-center">
+                    <div class="btn-group w-75" role="group">
+                        <a asp-controller="Category" asp-route-id="@obj.Id" asp-action="Edit" class="btn btn-primary m-1">Edit</a>
+                        <a asp-controller="Category" asp-route-id="@obj.Id" asp-action="Delete" class="btn btn-danger m-1">Delete</a>
+                    </div>
+                </td>
             </tr>
         }
     </table>
